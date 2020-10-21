@@ -3,6 +3,10 @@ body {
     font-family: consolas;
 }
 
+.hide {
+    display: none;
+}
+
 .game-area {
     position: relative;
     background-color: lightskyblue;
@@ -23,7 +27,7 @@ body {
 
 }
 
-.score {
+.game-score {
     background-color: black;
     color: white;
     text-align: center;
