@@ -54,6 +54,14 @@ function onGameStart(e) {
 
 function gameAction() {
     const wizard = document.querySelector('.wizard');
+
+    //Apply gravitation;
+
+     let isInAir = (player.y + player.height) <= gameArea.offsetHeight;
+     if (isInAir) {
+         player.y += game.speed;
+     }
+    //register user input;
     if (keys.ArrowUp && player.y > 0) {
         player.y -= game.speed * game.muvingMultiplier;
     
@@ -72,6 +80,7 @@ function gameAction() {
     }
     wizard.style.top = player.y + 'px';
     wizard.style.left = player.x + 'px';
+
     window.requestAnimationFrame(gameAction);
 }
 
