@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="game-section">
-    <div class="game-score">1500 pts</div>
+    <div class="game-score"><span class="points">0</span> pts.</div>
     <div class="game-start">Press to Play</div>
     <div class="game-area"></div>
     <div class="game-over"></div>
@@ -19,6 +19,7 @@ const gameStart = document.querySelector('.game-start');
 const gameArea = document.querySelector('.game-area');
 const gameOver = document.querySelector('.game-over');
 const gameScore = document.querySelector('.game-score');
+const gamePoints = gameScore.querySelector('.points');
 
 gameStart.addEventListener('click', onGameStart);
 document.addEventListener('keydown', onKeyDown);
@@ -35,6 +36,9 @@ let game = {
     speed: 2,
     muvingMultiplier: 4
 };
+let scene = {
+    score: 0,
+}
 
 
 function onGameStart(e) {
@@ -54,13 +58,15 @@ function onGameStart(e) {
 
 function gameAction() {
     const wizard = document.querySelector('.wizard');
-
+    scene.score++
     //Apply gravitation;
 
      let isInAir = (player.y + player.height) <= gameArea.offsetHeight;
      if (isInAir) {
          player.y += game.speed;
      }
+
+     
     //register user input;
     if (keys.ArrowUp && player.y > 0) {
         player.y -= game.speed * game.muvingMultiplier;
@@ -78,8 +84,14 @@ function gameAction() {
     if (keys.ArrowRight && player.x + player.width < gameArea.offsetWidth) {
         player.x += game.speed * game.muvingMultiplier;
     }
+
+    //Apply movement;
     wizard.style.top = player.y + 'px';
     wizard.style.left = player.x + 'px';
+
+    //Apply score;
+
+    gamePoints.textContent = scene.score;
 
     window.requestAnimationFrame(gameAction);
 }
