@@ -30,7 +30,8 @@ let player = {
     y: 300
 };
 let game = {
-    speed: 2
+    speed: 2,
+    muvingMultiplier: 4
 };
 
 
@@ -49,22 +50,23 @@ function onGameStart(e) {
 function gameAction() {
     const wizard = document.querySelector('.wizard');
     if (keys.ArrowUp) {
-        player.y -= game.speed;
-        wizard.style.top = player.y + 'px';
-
+        player.y -= game.speed * game.muvingMultiplier;
+    
     } 
     
     if (keys.ArrowDown) {
-
+        player.y += game.speed * game.muvingMultiplier;
     }
 
     if (keys.ArrowLeft) {
-
+        player.x -= game.speed * game.muvingMultiplier;
     }
 
     if (keys.ArrowRight) {
-
+        player.x += game.speed * game.muvingMultiplier;
     }
+    wizard.style.top = player.y + 'px';
+    wizard.style.left = player.x + 'px';
     window.requestAnimationFrame(gameAction);
 }
 
