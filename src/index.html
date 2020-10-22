@@ -41,7 +41,8 @@
             fireBallMultiplier: 5,
             fireInterval: 1000,
             cloudSpawnInterval: 3000,
-            bugSpawnInterval: 1000
+            bugSpawnInterval: 1000,
+            bugKillBonus: 2000,
         };
         let scene = {
             isActiveGame: true,
@@ -75,9 +76,9 @@
             if (timestamp - scene.lastBugSpawn > game.bugSpawnInterval + 5000 * Math.random()) {
                 let bug = document.createElement('div');
                 bug.classList.add('bug');
-                bug.x = gameArea.offsetWidth - 60;
+                bug.x = gameArea.offsetWidth - 80;
                 bug.style.left = bug.x + 'px';
-                bug.style.top = (gameArea.offsetHeight - 60) * Math.random() + 'px';
+                bug.style.top = (gameArea.offsetHeight - 80) * Math.random() + 'px';
                 gameArea.appendChild(bug);
                 scene.lastBugSpawn = timestamp;
             }
@@ -88,9 +89,9 @@
             if (timestamp - scene.lastCloudSpawn > (game.cloudSpawnInterval + 20000 * Math.random())) {
                 let cloud = document.createElement('div');
                 cloud.classList.add('cloud');
-                cloud.x = gameArea.offsetWidth - 200;
+                cloud.x = gameArea.offsetWidth;
                 cloud.style.left = cloud.x + 'px';
-                cloud.style.top = (gameArea.offsetHeight - 200) * Math.random() + 'px';
+                cloud.style.top = (gameArea.offsetHeight - 500) * Math.random() + 'px';
                 gameArea.appendChild(cloud);
                 scene.lastCloudSpawn = timestamp;
             }
@@ -173,6 +174,14 @@
 
                    gameOverAction();
                }
+
+               fireBalls.forEach(fireBall => {
+                   if (isCollision(fireBall, bug)) {
+                       scene.score += game.bugKillBonus;
+                       bug.parentElement.removeChild(bug);
+                       fireBall.parentElement.removeChild(fireBall);
+                   }
+               })
                
            });
 

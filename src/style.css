@@ -69,15 +69,15 @@ body {
 .cloud {
     z-index: 0;
     position: absolute;
-    width: 200px;
-    height: 200px;
-    background-image: url(./images/cloud.png);
+    width: 468px;
+    height: 338px;
+    background-image: url(./images/pngaaa.com-369119.png);
     background-size: cover;
 }
 .bug {
     position: absolute;
-    width: 60px;
-    height: 60px;
-    background-image: url(./images/bug.png);
+    width: 80px;
+    height: 80px;
+    background-image: url(./images/kisspng-insect-ladybird-red-black-ladybug-5a817d86c545f1.9963345915184357188081.png);
     background-size: cover;
 }
