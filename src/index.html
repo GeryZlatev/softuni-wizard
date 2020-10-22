@@ -65,6 +65,10 @@ function gameAction() {
     fireBalls.forEach(fireBall => {
         fireBall.x += game.speed;
         fireBall.style.left = fireBall.x + 'px';
+
+        if (fireBall.x + fireBall.offsetWidth > gameArea.offsetWidth) {
+            fireBall.parentElement.removeChild(fireBall);
+        }
     })
     //Apply gravitation;
 
